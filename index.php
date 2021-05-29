@@ -5,7 +5,7 @@ include("dbcon.php");
 if(isset($_SESSION['user_session'])){
   
   $invoice_number="RS-".invoice_number();
-	header("location:http://3.212.226.36/pms1/home.php?invoice_number=$invoice_number");
+	header("location:home.php?invoice_number=$invoice_number");
 }
 
    if(isset($_POST['submit'])){  //******Login Form*******

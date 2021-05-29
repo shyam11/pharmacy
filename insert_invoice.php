@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION['user_session'])){
 
-    header("location:http://3.212.226.36/pms1/index.php");
+    header("location:http://localhost/pharmacy/index.php");
 }
 
 include("dbcon.php");

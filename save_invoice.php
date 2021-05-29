@@ -18,13 +18,13 @@ class myPDF extends FPDF{
    
     $invoice_number = $_POST['invoice_number'];
     $date    =$_POST['date'];
-    $bill_to =$_POST['bill_to'];
+    //$bill_to =$_POST['bill_to'];
 
     $this->SetFont('Arial','B',20);
     $this->Cell(200,10,'Rampari Ausadhalaya (Shree Pardhan Healthcare Pvt. Ltd.)',0,0,'C');
     $this->Ln(20);
-    $this->Cell(19.6,40,'Bill To:'.$bill_to,0,0,'C');
-    $this->Ln(10);
+   // $this->Cell(19.6,40,'Bill To:'.$bill_to,0,0,'C');
+    //$this->Ln(10);
     $this->Cell(80,40,'Invoice Number:'.$invoice_number,0,0,'C');
     $this->Ln(35);
     $this->Cell(20,-10,$date,0,0,'C');
@@ -146,6 +146,8 @@ if(isset($_POST['submit'])){
   $bill_to = $_POST['bill_to'];
   $invoice_number = $_POST['invoice_number'];
   $date = $_POST['date'];
+  $paid_amount=$_POST['paid_amount'];
+  
    $medicine_name = $_POST['medicine_name'];
    @$medicines = implode($medicine_name, ",");
    $quantity = $_POST['qty'];
@@ -166,7 +168,7 @@ if(isset($_POST['submit'])){
  $select_on_hold_query = mysqli_query($con,$select_on_hold);
 
   $row = mysqli_fetch_array($select_on_hold_query);
-  $bill_to = $row['bill_to'];
+  //$bill_to = $row['bill_to'];
   $med_name = $row['medicine_name'];
   $category = $row['category'];
   $expire_date = $row['expire_date'];
@@ -188,8 +190,9 @@ if(isset($_POST['submit'])){
 		  $total_profit = $row['sum(profit_amount)'];
 	}
 
-  $insert_sql = "INSERT INTO sales values('','$invoice_number','$medicines','$qty_type','$total_amount','$total_profit','$date')";
+    $insert_sql = "INSERT INTO sales values('','$invoice_number','$medicines','$qty_type','$total_amount','$total_profit','$date','$bill_to','$paid_amount')";
 	$insert_query = mysqli_query($con,$insert_sql);
+
   if($insert_query){
 
       $update_stock = "UPDATE stock SET act_remain_quantity = '$remain_quantity' where medicine_name = '$med_name' and category = '$category' and expire_date = '$expire_date'";

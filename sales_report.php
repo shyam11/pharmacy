@@ -162,6 +162,8 @@
            <th>Medicines</th>
            <th>qty(Type)</th>
             <th>Total Amount</th>
+            <th>Paid Amount</th>
+
             <!-- <th>Total Profit</th>   -->
             <th>Action</th>
           <!--  <th>Action</th>-->
@@ -186,10 +188,12 @@
                  echo $invoice_number;
 
                  ?></td>
-            <td><?php echo 'hi'?></td>
+            <td><?php echo $row['bill_to']?></td>
             <td><?php echo $row['medicines']?></td>
             <td><?php echo $row['quantity']?></td>
             <td><?php echo $row['total_amount']?></td>
+            <td><?php echo $row['paid_amount']?></td>
+
             <!-- <td><?php //echo $row['total_profit']?></td> -->
                 <td><a href="download.php?invoice_number=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
              </td>
@@ -199,7 +203,7 @@
           </tr>
           </tbody>
 
-          <th colspan="4">Total:</th>
+          <th colspan="5">Total:</th>
               <th>
                 <?php
 
@@ -209,22 +213,23 @@
 
                 while($row = mysqli_fetch_array($select_query)){
 
-                   echo $row['sum(total_amount)'];
+                  echo number_format($row['sum(total_amount)'],2);
+
 
               }
 
                 ?>
               </th>
-              <th colspan="2">
+              <th colspan="1">
                 <?php
 
-                $select_sql = "SELECT sum(total_profit) from sales where Date BETWEEN '$d1' and '$d2'";
+                $select_sql = "SELECT sum(paid_amount) from sales where Date BETWEEN '$d1' and '$d2'";
 
                 $select_query = mysqli_query($con, $select_sql);
 
                 while($row = mysqli_fetch_array($select_query)){
 
-                   echo $row['sum(total_profit)'];
+                   echo $row['sum(paid_amount)'];
               }
                 ?>
                           <?php }else{
@@ -247,11 +252,13 @@
                  echo $invoice_number;
 
                  ?></td>
-           <td><?php echo 'ji'?></td>
+           <td><?php echo $row['bill_to']?></td>
            <td><?php echo $row['medicines']?></td>
            <td><?php echo $row['quantity']?></td>
 
             <td><?php echo $row['total_amount']?></td>
+            <td><?php echo $row['paid_amount']?></td>
+
             <!-- <td><?php //echo $row['total_profit']?></td> -->
             <td><a href="download.php?invoice_number=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
         </td>
@@ -264,32 +271,46 @@
               <th>
                 <?php
 
+                $select_sql = "SELECT sum(quantity) from sales where Date = '$date'";
+
+                $select_query = mysqli_query($con, $select_sql);
+
+                while($row = mysqli_fetch_array($select_query)){
+
+                   echo $row['sum(quantity)'];
+
+              }
+
+                ?>
+              </th>
+              <th colspan="1">
+                <?php
+
                 $select_sql = "SELECT sum(total_amount) from sales where Date = '$date'";
 
                 $select_query = mysqli_query($con, $select_sql);
 
                 while($row = mysqli_fetch_array($select_query)){
 
-                   echo $row['sum(total_amount)'];
-
+                   echo number_format($row['sum(total_amount)'],2);
               }
-
                 ?>
-              </th>
-              <th colspan="2">
+
+                <th colspan="1">
                 <?php
 
-                $select_sql = "SELECT sum(total_profit) from sales where Date = '$date'";
+                $select_sql = "SELECT sum(paid_amount) from sales where Date = '$date'";
 
                 $select_query = mysqli_query($con, $select_sql);
 
                 while($row = mysqli_fetch_array($select_query)){
 
-                   echo $row['sum(total_profit)'];
+                   echo $row['sum(paid_amount)'];
               }
                 ?>
 
-                          <?php } ?>
+                      <?php } ?>
+                          
               </th>
 
       </table>
