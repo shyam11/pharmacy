@@ -277,7 +277,7 @@
 
                 while($row = mysqli_fetch_array($select_query)){
 
-                   echo $row['sum(quantity)'];
+                  //  echo $row['sum(quantity)'];
 
               }
 
