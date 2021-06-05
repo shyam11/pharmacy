@@ -46,12 +46,12 @@ if(!isset($_SESSION['user_session'])){
 
     <div id="content">
 	<br>
-	<div style="font:bold 25px 'Arial';margin-left:20%">Rampari Ausadhalaya</div></br>
-		<div style="font:bold 25px 'Arial';">
+	<div style="font:bold 30px 'Helvetica';margin-left:20%">Rampari Ausadhalaya</div></br>
+		<div style="font:bold 22px 'Arial';">
 	(A Unit of Shree Pardhan Healthcare Pvt Ltd)</br>
 	N.H-28, Khabra Muzaffarpur, Bihar-843136</br>
 	</div>
-  <div style="font:bold 20px 'Arial';">
+  <div style="font:bold 18px 'Arial';">
   Contact:9199654999, shreepradhanhospital@gmail.com  
 	</div>                       
 	<br>
@@ -124,6 +124,8 @@ if(!isset($_SESSION['user_session'])){
           while($row = mysqli_fetch_array($select_sql)){
 
             $amount =  $row['sum(amount)'];
+            $amount = round($amount);
+            $amount=number_format($amount,2);
 
             echo '<h1>'.'Rs'.' '.$amount.'</h5>';
 
@@ -138,7 +140,9 @@ if(!isset($_SESSION['user_session'])){
           <td colspan="2"><strong style="font-size: 10px;">
           <?php
 			
-          echo '<h1>'.'Rs'.' '.$paid_amount.'.00'.'</h3>';
+      $paid_amount = round($paid_amount);
+      $paid_amount=number_format($paid_amount,2);
+          echo '<h1>'.'Rs'.' '.$paid_amount.'</h3>';
 
 
           ?>
@@ -150,7 +154,10 @@ if(!isset($_SESSION['user_session'])){
           <td colspan="2"><strong style="font-size: 10px;">
           <?php
 
-          echo '<h1>'.'Rs'.' '.($paid_amount - $amount).'</h3>';
+          $change_amount= round($paid_amount - $amount);
+          $change_amount=number_format($change_amount,2);
+
+         echo '<h1>'.'Rs'.' '.($change_amount).'</h3>';
           
           ?>
           </strong></td>
