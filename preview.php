@@ -46,12 +46,12 @@ if(!isset($_SESSION['user_session'])){
 
     <div id="content">
 	<br>
-	<div style="font:bold 30px 'Helvetica';margin-left:20%">Rampari Ausadhalaya</div></br>
-		<div style="font:bold 22px 'Arial';">
+	<div style="font:bold 35px 'Times New Roman';margin-left:20%">Rampari Ausadhalaya</div></br>
+		<div style="font:bold 22px 'Times New Roman';">
 	(A Unit of Shree Pardhan Healthcare Pvt Ltd)</br>
-	N.H-28, Khabra Muzaffarpur, Bihar-843136</br>
 	</div>
-  <div style="font:bold 18px 'Arial';">
+  <div style="font:bold 16px 'Times New Roman';">
+  N.H-28, Khabra Muzaffarpur, Bihar-843136</br>
   Contact:9199654999, shreepradhanhospital@gmail.com  
 	</div>                       
 	<br>
