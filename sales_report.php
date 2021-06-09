@@ -195,7 +195,7 @@
             <td><?php echo $row['paid_amount']?></td>
 
             <!-- <td><?php //echo $row['total_profit']?></td> -->
-                <td><a href="download.php?invoice_number=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
+                <td><a href="mypreview.php?invoice_number=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
              </td>
 
                                      <?php endwhile;?>
@@ -260,7 +260,7 @@
             <td><?php echo $row['paid_amount']?></td>
 
             <!-- <td><?php //echo $row['total_profit']?></td> -->
-            <td><a href="download.php?invoice_number=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
+            <td><a href="mypreview.php?invoice_number=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
         </td>
        <?php endwhile;?>
 

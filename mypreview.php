@@ -58,12 +58,22 @@ if(!isset($_SESSION['user_session'])){
 	<br>
 	<?php 
   $invoice_number = $_GET['invoice_number'];
-  $date           = $_POST['date'];
-  $paid_amount   = $_POST['paid_amount'];
-  $bill_to = $_POST['bill_to'];
+  include("dbcon.php");
+
+         $select_sql = "SELECT * FROM sales where invoice_number = '$invoice_number'";
+
+         $select_query =mysqli_query($con,$select_sql);
+
+          while($row =mysqli_fetch_array($select_query))
+		  {
+			 $date           = $row['Date'];
+			$paid_amount   = $row['paid_amount'];
+			$bill_to = $row['bill_to'];
+		  }
+		  
 	?>
 
-  <form method="POST" action="save_invoice.php">
+  <form method="POST" action="home.php">
   	<table border="1" cellpadding="4" cellspacing="0" style="font-family:arial; font-size:20px; text-align:left;" width="80%">
       <tr>
        <strong><h1>Bill To:<?php echo $bill_to?></h1></strong>
@@ -82,7 +92,7 @@ if(!isset($_SESSION['user_session'])){
     <tbody>
       <?php
 
-         include("dbcon.php");
+        // include("dbcon.php");
 
          $select_sql = "SELECT * FROM on_hold where invoice_number = '$invoice_number'";
 
@@ -172,7 +182,6 @@ if(!isset($_SESSION['user_session'])){
   <input type="hidden" name="invoice_number" value="<?php echo $invoice_number?>">
   <input type="hidden" name="date" value="<?php echo $date?>">
   <input type="hidden" name="bill_to" value="<?php echo $bill_to?>">
-  <input type="submit" name="submit" class="btn btn-success btn-large" value="Submit and Make new Sale" >
   <a href="javascript:Clickheretoprint()" class="btn btn-primary" style="float:right; margin-right:20%"> Print</a>
 
   </form>
