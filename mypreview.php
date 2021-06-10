@@ -135,6 +135,8 @@ if(!isset($_SESSION['user_session'])){
           while($row = mysqli_fetch_array($select_sql)){
 
             $amount =  $row['sum(amount)'];
+            $change_amount= round($amount);
+
             $amount = round($amount);
             $amount=number_format($amount,2);
 
@@ -150,10 +152,12 @@ if(!isset($_SESSION['user_session'])){
           <td colspan="3" style=" text-align:right;"><strong style="font-size: 18px;">&nbsp;&nbsp;Paid Amount: &nbsp;</strong></td>
           <td colspan="2"><strong style="font-size: 10px;">
           <?php
-			
-      $paid_amount = round($paid_amount);
-      $paid_amount=number_format($paid_amount,2);
-          echo '<h1>'.'Rs'.' '.$paid_amount.'</h3>';
+
+				$change_paid= $paid_amount;
+
+        $paid_amount = round($paid_amount);
+        $paid_amount=number_format($paid_amount,2);
+        echo '<h1>'.'Rs'.' '.$paid_amount.'</h3>';
 
 
           ?>
@@ -165,8 +169,8 @@ if(!isset($_SESSION['user_session'])){
           <td colspan="2"><strong style="font-size: 10px;">
           <?php
 
-          $change_amount= round($paid_amount - $amount);
-          $change_amount=number_format($change_amount,2);
+        $change_amount= round($change_paid - $change_amount);
+        $change_amount=number_format($change_amount,2);
 
          echo '<h1>'.'Rs'.' '.($change_amount).'</h3>';
           
