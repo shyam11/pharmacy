@@ -40,10 +40,32 @@ $select_query = mysqli_query($con,$select_sql);
 
           <td><input type="text" name="category" id="category" size="10" value="<?php echo $row['category']?>"  required></td>
         </tr>
-         <tr>
-                   <td>Quantity:</td>
 
-        <td><input type="number" style="width: 95px;" name="quantity" step="any" pattern="^\d*(\.\d{0,2})?$" value="<?php echo $row['quantity']?>">
+        <tr>
+          <td>Available Qty:</td>
+          
+          <td><input type="number" style="width: 95px;" name="avl_qty" step="any" pattern="^\d*(\.\d{0,2})?$" value="<?php echo $row['quantity']?>" readonly>
+
+<select style="width: 95px; height: 28px; border-color: #000080" name="sell_type" > 
+    <option value="<?php echo $row['sell_type']?>" disabled><?php echo $row['sell_type']?></option>
+    <option value="Bot">Bot</option>
+    <option value="Stp">Stp</option>
+     <option value="Tab">Tab</option>
+<option value="Sachet">Sachet</option>	
+<option value="Unit">Unit</option>
+<option value="Tube">Tube</option>
+    </select></td>
+
+      </tr>
+
+
+
+
+         <tr>
+         
+                   <td>New Quantity:</td>
+
+        <td><input type="number" style="width: 95px;" name="quantity" step="any" pattern="^\d*(\.\d{0,2})?$" value="">
 
              <select style="width: 95px; height: 28px; border-color: #000080" name="sell_type" > 
                  <option value="<?php echo $row['sell_type']?>" disabled><?php echo $row['sell_type']?></option>

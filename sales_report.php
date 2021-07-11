@@ -157,7 +157,7 @@
 
           <tr>
             <th>Date</th>
-            <th>Invoice_Number</th>
+            <th>Bill Number</th>
             <th>Patient Name</th>
            <th>Medicines</th>
            <th>qty(Type)</th>
@@ -185,7 +185,8 @@
             <td><?php echo date('d-M-Y',strtotime($row['Date']))?></td>
             <td><?php $invoice_number =  $row['invoice_number'];
 
-                 echo $invoice_number;
+                // echo $invoice_number;
+                echo $row['id']
 
                  ?></td>
             <td><?php echo $row['bill_to']?></td>
@@ -249,7 +250,8 @@
             <td><?php echo date('d-M-Y', strtotime($row['Date']))?>&nbsp;&nbsp;(<font size='2' color='brown'>Today</font>)</td>
             <td><?php $invoice_number =  $row['invoice_number'];
 
-                 echo $invoice_number;
+                // echo $invoice_number;
+                echo $row['id']
 
                  ?></td>
            <td><?php echo $row['bill_to']?></td>

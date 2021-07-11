@@ -61,13 +61,37 @@ if(!isset($_SESSION['user_session'])){
   $date           = $_POST['date'];
   $paid_amount   = $_POST['paid_amount'];
   $bill_to = $_POST['bill_to'];
+  $sale_type = 'sale'; //$_POST['sale_type'];
+  $ipd = '1';  //$_POST['ipd'];
+ // echo $ipd.'--'.$sale_type;die;
 	?>
+
+<?php
+
+include("dbcon.php");
+
+$select_sql = "SELECT id FROM sales order by id desc limit 1";
+
+$select_query =mysqli_query($con,$select_sql);
+
+while($row =mysqli_fetch_array($select_query))
+{
+
+  $id =  $row['id']+1;
+  
+}
+
+
+
+ //while($row =mysqli_fetch_array($select_query)):
+
+?>
 
   <form method="POST" action="save_invoice.php">
   	<table border="1" cellpadding="4" cellspacing="0" style="font-family:arial; font-size:20px; text-align:left;" width="80%">
       <tr>
        <strong><h1>Bill To:<?php echo $bill_to?></h1></strong>
-       <strong><h1>Invoice Number:<?php echo $invoice_number?></h1></strong> 
+       <strong><h1>Bill Number:<?php echo $id?></h1></strong> 
        <strong><h1><?php echo date('d-M-Y', strtotime($date))?></h1></strong></br></br>
       </tr>
 		<thead>
@@ -82,13 +106,14 @@ if(!isset($_SESSION['user_session'])){
     <tbody>
       <?php
 
-         include("dbcon.php");
+        // include("dbcon.php");
 
          $select_sql = "SELECT * FROM on_hold where invoice_number = '$invoice_number'";
 
          $select_query =mysqli_query($con,$select_sql);
 
-          while($row =mysqli_fetch_array($select_query)):
+         while($row =mysqli_fetch_array($select_query)):
+
       ?>
         <tr class="record">
         <td><h4><?php echo $row['medicine_name'];?></h4>
@@ -111,7 +136,7 @@ if(!isset($_SESSION['user_session'])){
         ?>
         </td>
         </tr>
-      <?php endwhile;?>
+        <?php endwhile;?>
 
         <tr>
           <td colspan="3" style=" text-align:right;"><strong style="font-size: 18px;">&nbsp;&nbsp;Total: &nbsp;</strong></td>
@@ -173,6 +198,8 @@ if(!isset($_SESSION['user_session'])){
   <input type="hidden" name="invoice_number" value="<?php echo $invoice_number?>">
   <input type="hidden" name="date" value="<?php echo $date?>">
   <input type="hidden" name="bill_to" value="<?php echo $bill_to?>">
+  <input type="hidden" name="sale_type" value="<?php echo $sale_type?>">
+  <input type="hidden" name="ipd" value="<?php echo $ipd?>">
   <input type="submit" name="submit" class="btn btn-success btn-large" value="Submit and Make new Sale" >
   <a href="javascript:Clickheretoprint()" class="btn btn-primary" style="float:right; margin-right:20%"> Print</a>
 

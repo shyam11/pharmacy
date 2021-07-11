@@ -42,7 +42,7 @@ if(!isset($_SESSION['user_session'])){
 
   <div class="container">
 
-  	<a href="home.php?invoice_number=<?php echo $_GET['invoice_number']?>"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
+  	<a href="index.php"><button class="btn btn-default"><i class="icon-arrow-left"></i> Back to Sales</button></a>
 
     <div id="content">
 	<br>
@@ -69,6 +69,7 @@ if(!isset($_SESSION['user_session'])){
 			 $date           = $row['Date'];
 			$paid_amount   = $row['paid_amount'];
 			$bill_to = $row['bill_to'];
+			$id= $row['id'];
 		  }
 		  
 	?>
@@ -77,7 +78,7 @@ if(!isset($_SESSION['user_session'])){
   	<table border="1" cellpadding="4" cellspacing="0" style="font-family:arial; font-size:20px; text-align:left;" width="80%">
       <tr>
        <strong><h1>Bill To:<?php echo $bill_to?></h1></strong>
-       <strong><h1>Invoice Number:<?php echo $invoice_number?></h1></strong> 
+       <strong><h1>Bill Number:<?php echo $id?></h1></strong> 
        <strong><h1><?php echo date('d-M-Y', strtotime($date))?></h1></strong></br></br>
       </tr>
 		<thead>

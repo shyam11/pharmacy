@@ -23,6 +23,16 @@ if(!isset($_SESSION['user_session'])){
 <input type="hidden" name="grand_profit" value="<?php echo $_GET['profit']?>">
 <input type="hidden" name="date" value="<?php echo date("Y/m/d");?>">
 <input type="text" name="bill_to" autocomplete="off" placeholder="Bill To" style="width: 300px; height:30px;  margin-bottom: 15px;"  required/><br>
+
+<!-- <label for="sale_type">Choose a sale type:</label> 
+<select name="sale_type" id="sale_type" style="width: 300px; height:30px;  margin-bottom: 15px;">
+  <option value="sale">Sale</option>
+  <option value="return">Return</option>
+</select>
+
+
+<input type="number" name="ipd" autocomplete="off" placeholder="IPD Number" style="width: 300px; height:30px;  margin-bottom: 15px;" value=" "/><br>
+-->
 <input type="number" name="paid_amount" autocomplete="off" placeholder="Paid Amount" style="width: 300px; height:30px;  margin-bottom: 15px;"  required/><br>
       <button class="btn btn-success btn-block btn-large" name="submit">Submit</button>
         </center>
