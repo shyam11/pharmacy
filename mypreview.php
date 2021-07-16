@@ -57,7 +57,7 @@ if(!isset($_SESSION['user_session'])){
 	</div>                       
 	<br>
 	<?php 
-  $invoice_number = $_GET['invoice_number'];
+  $invoice_number = $_GET['pdf'];
   include("dbcon.php");
 
          $select_sql = "SELECT * FROM sales where invoice_number = '$invoice_number'";
