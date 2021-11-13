@@ -252,14 +252,14 @@ window.onload=startclock;
             ?>
             
           </li>
-			<li><a href="index.php"><span class="icon-home"></span>Home</a></li>
-			<li><a href="product/view.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Products</a></li>
+		  <li><a href="index.php"><span class="icon-home"></span>Home</a></li>
+         <li><a href="product/view.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Products</a></li>
 			<li><a href="return_home.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Return</a></li>
 			<li><a href="sales_report.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Sales Report</a></li>
 			<li><a href="return_sales_report.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Return Report</a></li>
 			<li><a href="ipd_report.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>IPD</a></li>
-			<li><a href="unbilled_report.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Unbilled</a></li>			
-			<li><a href="logout.php" class="link"><font color='red'><span class="icon-off"></span></font>Logout</a></li>
+			<li><a href="unbilled_report.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Unbilled</a></li>	   
+         <li><a href="logout.php" class="link"><font color='red'><span class="icon-off"></span></font>Logout</a></li>
          
        </ul>
          </div>
@@ -285,12 +285,11 @@ window.onload=startclock;
    
    <div class="container">
      <div class="contentheader" style="width: 300px;">
-      <h1>Sell Here</h1>
+      <h1>Return Here</h1>
      </div><br><br>
    
-   
   <div class="col-md-6">
-     <form method="POST" action="insert_invoice.php?invoice_number=<?php echo $_GET['invoice_number']?> " >
+     <form method="POST" action="return_insert_invoice.php?invoice_number=<?php echo $_GET['invoice_number']?> " >
       <!-- <input type="text" name="bar_code" id="bar_code" autocomplete="off" placeholder="Barcode scan here" style="width:300px;height: 30px;"><br> -->
   <input type="text" id="product" required  autocomplete="off" placeholder="Enter Medicine Name" style="width:300px;height: 30px;"><br>
   <div class="ui-widget">
@@ -301,7 +300,7 @@ window.onload=startclock;
 
   <input type="number" name="qty" id="qty"  placeholder="Qty" autocomplete="off" step="any" pattern="^\d*(\.\d{0,2})?$" style="width: 100px; height:30px;" required>
   <input type="hidden" name="date" value="<?php echo date("m/D/Y");?>">
-  <Button type="submit"  name="submit" class="btn btn-info" id="btn_submit" style="width: 123px; height:40px; margin-top:-8px;">Add</button>
+  <Button type="submit"  name="submit" class="btn btn-info" id="btn_submit" style="width: 123px; height:40px; margin-top:-8px;">Return</button>
    </form> 
    </div>
 
@@ -388,7 +387,7 @@ window.onload=startclock;
                </td>
                
                <td><?php echo $row['amount']; ?></td>
-     <td><a href="delete_invoice.php?invoice_number=<?php echo $_GET['invoice_number']?>&id=<?php echo $row['id'];?>&name=<?php echo $row['medicine_name']?>&expire_date=<?php echo $row['expire_date']?>&quantity=<?php echo $row['qty'];?>" class="btn btn-warning">Cancel</a></td>
+     <td><a href="return_delete_invoice.php?invoice_number=<?php echo $_GET['invoice_number']?>&id=<?php echo $row['id'];?>&name=<?php echo $row['medicine_name']?>&expire_date=<?php echo $row['expire_date']?>&quantity=<?php echo $row['qty'];?>" class="btn btn-warning">Cancel</a></td>
 
             <?php endwhile; ?>  
           </tr>
@@ -418,7 +417,7 @@ window.onload=startclock;
      if($medicine_name && $category && $quantity !=null){
       ?>
 
-      <a id="popup"  href="checkout.php?invoice_number=<?php echo $_GET['invoice_number']?>&medicine_name=<?php echo $medicine_name?>&category=<?php echo $category?>&ex_date=<?php echo $ex_date?>&quantity=<?php echo $quantity?>&total=<?php echo $grand_total?>&profit=<?php echo $grand_profit?>" style="width:400px;" class="btn btn-primary btn-large">Submit</a>
+      <a id="popup"  href="return_checkout.php?invoice_number=<?php echo $_GET['invoice_number']?>&medicine_name=<?php echo $medicine_name?>&category=<?php echo $category?>&ex_date=<?php echo $ex_date?>&quantity=<?php echo $quantity?>&total=<?php echo $grand_total?>&profit=<?php echo $grand_profit?>" style="width:400px;" class="btn btn-primary btn-large">Submit</a>
 
     <?php
      }else{

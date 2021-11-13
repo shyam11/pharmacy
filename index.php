@@ -66,7 +66,7 @@ if(isset($_SESSION['user_session'])){
 <html>
 <head>
 
-	<title>Rampari Ausadhalaya (Shree Pardhan Healthcare Pvt. Ltd.)</title>
+	<title>Rampari Ausadhalaya (Shree Pradhan Healthcare Pvt. Ltd.)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
@@ -79,7 +79,7 @@ if(isset($_SESSION['user_session'])){
 <body style="background:url('images/fresh_snow.png')">
 
 	<center>
-		<h1>Rampari Ausadhalaya (Shree Pardhan Healthcare Pvt. Ltd.)</h1>
+		<h1>Rampari Ausadhalaya (Shree Pradhan Healthcare Pvt. Ltd.)</h1>
 	</center>
 
 	<div class="content" style="width: 500px">

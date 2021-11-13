@@ -14,7 +14,7 @@ if(!isset($_SESSION['user_session'])){
 </head>
 <body>
 <div class="checkout">
-	<form method="post" action="preview.php?invoice_number=<?php echo $_GET['invoice_number']?>">
+	<form method="post" action="return_preview.php?invoice_number=<?php echo $_GET['invoice_number']?>">
 		<center>
 <input type="hidden" name="medicine_name" value="<?php echo $_GET['medicine_name']?>">
 <input type="hidden" name="category" value="<?php echo $_GET['category']?>">
@@ -33,7 +33,7 @@ if(!isset($_SESSION['user_session'])){
 
 <input type="number" name="ipd" autocomplete="off" placeholder="IPD Number" style="width: 300px; height:30px;  margin-bottom: 15px;" value=" "/><br>
 
-<input type="number" name="paid_amount" autocomplete="off" placeholder="Paid Amount" style="width: 300px; height:30px;  margin-bottom: 15px;"  required/><br>
+<input type="number" name="paid_amount" autocomplete="off" placeholder="Return Amount" style="width: 300px; height:30px;  margin-bottom: 15px;"  required/><br>
       <button class="btn btn-success btn-block btn-large" name="submit">Submit</button>
         </center>
    </form>

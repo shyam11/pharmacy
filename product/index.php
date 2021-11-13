@@ -65,11 +65,11 @@
 
           <td><input type="number" name="selling_price" id="selling_price" step="any" pattern="^\d*(\.\d{0,2})?$"></td>
         </tr>
-        <tr>
+        <!--<tr>
                    <td>Profit:</td>
 
           <td><input type="text" name="profit_price" id="profit_price"></td>
-        </tr>
+        </tr>-->
 
         <tr>
           <td></td>

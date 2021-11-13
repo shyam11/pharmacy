@@ -144,12 +144,12 @@
 
     <div class="contentheader">
 
-      <h2>Sales Report</h2>
+      <h2>Return Sales Report</h2>
 
     </div><br>
 
 
- <center> <form action="sales_report.php?invoice_number=<?php echo $_GET['invoice_number']?>" method="POST">
+ <center> <form action="return_sales_report.php?invoice_number=<?php echo $_GET['invoice_number']?>" method="POST">
 <strong>From : <input type="date" style="width: 223px; padding:14px;" name="d1" class="tcal" autocomplete="off" value="" /> To: <input type="date" style="width: 223px; padding:14px;" name="d2" autocomplete="off" class="tcal" value="" />
  <button class="btn btn-info" style="width: 123px; height:50px; margin-top:-8px;margin-left:8px;" type="submit" name="submit"><i class="icon icon-search icon-large"></i> Search</button>
 </strong>
@@ -181,7 +181,7 @@
             if(isset($_POST['submit'])){
             $d1=$_POST['d1'];
             $d2=$_POST['d2'];
-            $select_sql = "SELECT * FROM sales where sale_type!='return' and Date BETWEEN '$d1' and '$d2' order by Date desc";
+            $select_sql = "SELECT * FROM sales where sale_type='return' and Date BETWEEN '$d1' and '$d2' order by Date desc";
             $select_query = mysqli_query($con,$select_sql);
             while($row = mysqli_fetch_array($select_query)) :
          ?>
@@ -201,7 +201,7 @@
             <td><?php echo $row['paid_amount']?></td>
 
             <!-- <td><?php //echo $row['total_profit']?></td> -->
-                <td><a href="mypreview.php?pdf=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
+                <td><a href="return_sales_preview.php?pdf=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
              </td>
 
                                      <?php endwhile;?>
@@ -213,7 +213,7 @@
               <th>
                 <?php
 
-                $select_sql = "SELECT sum(total_amount) from sales where sale_type!='return' and Date BETWEEN '$d1' and '$d2'";
+                $select_sql = "SELECT sum(total_amount) from sales where sale_type='return' and Date BETWEEN '$d1' and '$d2'";
 
                 $select_query = mysqli_query($con, $select_sql);
 
@@ -229,7 +229,7 @@
               <th colspan="1">
                 <?php
 
-                $select_sql = "SELECT sum(paid_amount) from sales where sale_type!='return' and Date BETWEEN '$d1' and '$d2'";
+                $select_sql = "SELECT sum(paid_amount) from sales where sale_type='return' and Date BETWEEN '$d1' and '$d2'";
 
                 $select_query = mysqli_query($con, $select_sql);
 
@@ -243,7 +243,7 @@
 
 
 
-                          $select_sql = "SELECT * FROM sales where sale_type!='return' and Date = '$date'";
+                          $select_sql = "SELECT * FROM sales where sale_type='return' and Date = '$date'";
                           $select_query = mysqli_query($con,$select_sql);
                           while($row = mysqli_fetch_array($select_query)) :
 
@@ -267,7 +267,7 @@
             <td><?php echo $row['paid_amount']?></td>
 
             <!-- <td><?php //echo $row['total_profit']?></td> -->
-            <td><a href="mypreview.php?pdf=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
+            <td><a href="return_sales_preview.php?pdf=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
         </td>
        <?php endwhile;?>
 
@@ -278,7 +278,7 @@
               <th>
                 <?php
 
-                $select_sql = "SELECT sum(quantity) from sales where sale_type!='return' and Date = '$date'";
+                $select_sql = "SELECT sum(quantity) from sales where sale_type='return' and Date = '$date'";
 
                 $select_query = mysqli_query($con, $select_sql);
 
@@ -293,7 +293,7 @@
               <th colspan="1">
                 <?php
 
-                $select_sql = "SELECT sum(total_amount) from sales where sale_type!='return' and Date = '$date'";
+                $select_sql = "SELECT sum(total_amount) from sales where sale_type='return' and Date = '$date'";
 
                 $select_query = mysqli_query($con, $select_sql);
 
@@ -306,7 +306,7 @@
                 <th colspan="1">
                 <?php
 
-                $select_sql = "SELECT sum(paid_amount) from sales where sale_type!='return' and Date = '$date'";
+                $select_sql = "SELECT sum(paid_amount) from sales where sale_type='return' and Date = '$date'";
 
                 $select_query = mysqli_query($con, $select_sql);
 

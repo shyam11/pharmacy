@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>Rampari Ausadhalaya (Shree Pardhan Healthcare Pvt. Ltd.)</title>
+ <title>Rampari Ausadhalaya (Shree pradhan Healthcare Pvt. Ltd.)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
@@ -46,7 +46,7 @@
         <span class="icon-bar"></span>
           </a>
 
-          <a class="brand" href="#"><b>Rampari Ausadhalaya (Shree Pardhan Healthcare Pvt. Ltd.)</b></a>
+          <a class="brand" href="#"><b>Rampari Ausadhalaya (Shree pradhan Healthcare Pvt. Ltd.)</b></a>
         <div class="nav-collapse">
             <ul class="nav pull-right">
                
@@ -101,9 +101,10 @@
           </li>
         
 
-      <li><a href="../home.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-home"></span>Home</a></li>
+      <li><a href="../index.php"><span class="icon-home"></span>Home</a></li>
         
          <li><a href="../sales_report.php?invoice_number=<?php echo $_GET['invoice_number']?>"><span class="icon-bar-chart"></span>Sales Report</a></li>
+		 
          <li><a href="../logout.php" class="link"><font color='red'><span class="icon-off"></span></font>Logout</a></li>
        </ul>
       </div>
@@ -176,7 +177,7 @@
              <th width="1%">Remark</th>     
              <th width="2%">Acutal Price</th>
              <th style="background-color: orange" width="2%">Selling Price</th>
-             <th style="background-color: green;" width="2%">Profit Price</th>
+             <!--<th style="background-color: green;" width="2%">Profit Price</th>-->
              <th width = "3%">Status</th>
              <th width = "5%">Action</th>
              </tr>
@@ -202,7 +203,7 @@
             <td><?php echo $row['company']; ?></td>
             <td><?php echo $row['actual_price']; ?></td>
             <td><?php echo $row['selling_price']; ?></td>
-            <td><?php echo $row['profit_price']; ?></td>
+            <!--<td><?php echo $row['profit_price']; ?></td>-->
             <td><?php $status = $row['status'];
 
                 if($status == 'Available'){

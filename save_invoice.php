@@ -18,10 +18,12 @@ class myPDF extends FPDF{
    
     $invoice_number = $_POST['invoice_number'];
     $date    =$_POST['date'];
+//	$ipd  = $_POST['ipd'];
+	//$sale_type = $_POST['sale_type'];
     //$bill_to =$_POST['bill_to'];
 
     $this->SetFont('Arial','B',20);
-    $this->Cell(200,10,'Rampari Ausadhalaya (Shree Pardhan Healthcare Pvt. Ltd.)',0,0,'C');
+    $this->Cell(200,10,'Rampari Ausadhalaya (Shree Pradhan Healthcare Pvt. Ltd.)',0,0,'C');
     $this->Ln(20);
    // $this->Cell(19.6,40,'Bill To:'.$bill_to,0,0,'C');
     //$this->Ln(10);
@@ -57,6 +59,8 @@ class myPDF extends FPDF{
      $paid_amount = $_POST['paid_amount'];
      $invoice_number = $_POST['invoice_number'];
      $bill_to = $_POST['bill_to'];
+	$ipd  = $_POST['ipd'];
+	$sale_type = $_POST['sale_type'];
        $select_sql = "SELECT * FROM on_hold where invoice_number = '$invoice_number'";
 
          $select_query =mysqli_query($con,$select_sql);
@@ -144,6 +148,8 @@ $date1 = date("YMd");
 
 if(isset($_POST['submit'])){
   $bill_to = $_POST['bill_to'];
+  	$ipd  = $_POST['ipd'];
+	$sale_type = $_POST['sale_type'];
   $invoice_number = $_POST['invoice_number'];
   $date = $_POST['date'];
   $paid_amount=$_POST['paid_amount'];
@@ -190,9 +196,10 @@ if(isset($_POST['submit'])){
 		  $total_profit = $row['sum(profit_amount)'];
 	}
 
-    $insert_sql = "INSERT INTO sales values('','$invoice_number','$medicines','$qty_type','$total_amount','$total_profit','$date','$bill_to','$paid_amount')";
+    $insert_sql = "INSERT INTO sales values('','$invoice_number','$medicines','$qty_type','$total_amount','$total_profit','$date','$bill_to','$paid_amount','$ipd','$sale_type')";
+	$update_on_hold = "update on_hold set status='complete' where invoice_number='$invoice_number'";
 	$insert_query = mysqli_query($con,$insert_sql);
-
+	$update_on_hold_query = mysqli_query($con,$update_on_hold);
   if($insert_query){
 
       $update_stock = "UPDATE stock SET act_remain_quantity = '$remain_quantity' where medicine_name = '$med_name' and category = '$category' and expire_date = '$expire_date'";
@@ -211,7 +218,8 @@ if(isset($_POST['submit'])){
     echo "slekfjs";
   }
   $new_invoice_number  = "RS-".$pdf->invoice_number();
-  header("location:home.php?invoice_number=$new_invoice_number");
+  //header("location:home.php?invoice_number=$new_invoice_number");
+  header("location:index.php");
 }
 
 ?>

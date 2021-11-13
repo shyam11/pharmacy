@@ -144,12 +144,12 @@
 
     <div class="contentheader">
 
-      <h2>Sales Report</h2>
+      <h2>IPD Sales Report</h2>
 
     </div><br>
 
 
- <center> <form action="sales_report.php?invoice_number=<?php echo $_GET['invoice_number']?>" method="POST">
+ <center> <form action="ipd_report.php?invoice_number=<?php echo $_GET['invoice_number']?>" method="POST">
 <strong>From : <input type="date" style="width: 223px; padding:14px;" name="d1" class="tcal" autocomplete="off" value="" /> To: <input type="date" style="width: 223px; padding:14px;" name="d2" autocomplete="off" class="tcal" value="" />
  <button class="btn btn-info" style="width: 123px; height:50px; margin-top:-8px;margin-left:8px;" type="submit" name="submit"><i class="icon icon-search icon-large"></i> Search</button>
 </strong>
@@ -161,16 +161,20 @@
      <table class="table table-bordered">
 
           <tr>
+			<th>ipd</th>
+			<th>Bill To</th>
             <th>Date</th>
-            <th>Bill Number</th>
+			<th>Total Amount</th>
+            <th>Paid Amount</th>
+			<th>Action</th>
+            <!--<th>Bill Number</th>
             <th>Patient Name</th>
            <th>Medicines</th>
-           <th style="word-break:break-all">qty(Type)</th>
-            <th>Total Amount</th>
-            <th>Paid Amount</th>
+           <th style="word-break:break-all">qty(Type)</th>-->
+
 
             <!-- <th>Total Profit</th>   -->
-            <th>Action</th>
+            
           <!--  <th>Action</th>-->
           </tr>
 
@@ -181,69 +185,33 @@
             if(isset($_POST['submit'])){
             $d1=$_POST['d1'];
             $d2=$_POST['d2'];
-            $select_sql = "SELECT * FROM sales where sale_type!='return' and Date BETWEEN '$d1' and '$d2' order by Date desc";
+            $select_sql = "SELECT ipd,bill_to, Date, sum(total_amount) as total_amount, sum(paid_amount) as paid_amount FROM sales where Date BETWEEN '$d1' and '$d2' group by ipd, sale_type having ipd>0 order by Date desc";
             $select_query = mysqli_query($con,$select_sql);
             while($row = mysqli_fetch_array($select_query)) :
          ?>
           <tbody>
           <tr>
-            <td><?php echo date('d-M-Y',strtotime($row['Date']))?></td>
-            <td><?php $invoice_number =  $row['invoice_number'];
-
-                // echo $invoice_number;
-                echo $row['id']
-
-                 ?></td>
+            <td><?php $ipd =  $row['ipd']; echo $row['ipd']?></td>
             <td><?php echo $row['bill_to']?></td>
-            <td><?php echo $row['medicines']?></td>
-            <td style="word-break:break-all"><?php echo $row['quantity']?></td>
-            <td><?php echo $row['total_amount']?></td>
+			<td><?php echo date('d-M-Y',strtotime($row['Date']))?></td>
+			<td><?php echo $row['total_amount']?></td>
             <td><?php echo $row['paid_amount']?></td>
-
-            <!-- <td><?php //echo $row['total_profit']?></td> -->
-                <td><a href="mypreview.php?pdf=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
+			<td><a href="ipd_preview.php?pdf=<?php echo $ipd?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
              </td>
 
                                      <?php endwhile;?>
 
           </tr>
           </tbody>
-
-          <th colspan="5">Total:</th>
-              <th>
-                <?php
-
-                $select_sql = "SELECT sum(total_amount) from sales where sale_type!='return' and Date BETWEEN '$d1' and '$d2'";
-
-                $select_query = mysqli_query($con, $select_sql);
-
-                while($row = mysqli_fetch_array($select_query)){
-
-                  echo number_format($row['sum(total_amount)'],2);
-
-
-              }
-
-                ?>
-              </th>
               <th colspan="1">
                 <?php
-
-                $select_sql = "SELECT sum(paid_amount) from sales where sale_type!='return' and Date BETWEEN '$d1' and '$d2'";
-
-                $select_query = mysqli_query($con, $select_sql);
-
-                while($row = mysqli_fetch_array($select_query)){
-
-                   echo $row['sum(paid_amount)'];
-              }
                 ?>
                           <?php }else{
 
 
 
 
-                          $select_sql = "SELECT * FROM sales where sale_type!='return' and Date = '$date'";
+                          $select_sql = "SELECT ipd, bill_to, Date, sum(total_amount) as total_amount, sum(paid_amount) as paid_amount FROM sales where Date = '$date' group by ipd,sale_type having ipd>0 order by Date desc";
                           $select_query = mysqli_query($con,$select_sql);
                           while($row = mysqli_fetch_array($select_query)) :
 
@@ -252,73 +220,24 @@
 
                              <tbody>
           <tr> 
-            <td><?php echo date('d-M-Y', strtotime($row['Date']))?>&nbsp;&nbsp;(<font size='2' color='brown'>Today</font>)</td>
-            <td><?php $invoice_number =  $row['invoice_number'];
-
-                // echo $invoice_number;
-                echo $row['id']
-
-                 ?></td>
-           <td><?php echo $row['bill_to']?></td>
-           <td><?php echo $row['medicines']?></td>
-           <td style="word-break:break-all"><?php echo $row['quantity']?></td>
-
-            <td><?php echo $row['total_amount']?></td>
+            <td><?php $ipd =  $row['ipd']; echo $row['ipd']?></td>
+            <td><?php echo $row['bill_to']?></td>
+			<td><?php echo date('d-M-Y',strtotime($row['Date']))?></td>
+			<td><?php echo $row['total_amount']?></td>
             <td><?php echo $row['paid_amount']?></td>
 
             <!-- <td><?php //echo $row['total_profit']?></td> -->
-            <td><a href="mypreview.php?pdf=<?php echo $invoice_number?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
+            <td><a href="ipd_preview.php?pdf=<?php echo $ipd?>"><button class="btn btn-info btn-large"><span class="icon-download"></span></button></a>
         </td>
        <?php endwhile;?>
 
           </tr>
           </tbody>
 
-           <th colspan="4">Total:</th>
-              <th>
-                <?php
-
-                $select_sql = "SELECT sum(quantity) from sales where sale_type!='return' and Date = '$date'";
-
-                $select_query = mysqli_query($con, $select_sql);
-
-                while($row = mysqli_fetch_array($select_query)){
-
-                  //  echo $row['sum(quantity)'];
-
-              }
-
-                ?>
-              </th>
-              <th colspan="1">
-                <?php
-
-                $select_sql = "SELECT sum(total_amount) from sales where sale_type!='return' and Date = '$date'";
-
-                $select_query = mysqli_query($con, $select_sql);
-
-                while($row = mysqli_fetch_array($select_query)){
-
-                   echo number_format($row['sum(total_amount)'],2);
-              }
-                ?>
-
-                <th colspan="1">
-                <?php
-
-                $select_sql = "SELECT sum(paid_amount) from sales where sale_type!='return' and Date = '$date'";
-
-                $select_query = mysqli_query($con, $select_sql);
-
-                while($row = mysqli_fetch_array($select_query)){
-
-                   echo $row['sum(paid_amount)'];
-              }
-                ?>
-
+           
                       <?php } ?>
                           
-              </th>
+              
 
       </table>
 
